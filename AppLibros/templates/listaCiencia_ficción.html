@@ -1,0 +1,38 @@
+{% extends 'home.html' %}
+
+{% block main %}
+
+<br><br>
+
+<div class="container text-center">
+    <h1>Libros de Ciencia Ficción</h1>
+</div>
+
+<br>
+<div class="container text-center">
+    <div class="row">
+            {% for libro in ciencia_ficción %}
+            <div class="col-sm-6 align-items-center">
+                <div class="card-body">
+                    <!-- Mostrar la imagen del libro si existe -->
+                {% if libro.imagenLibro %}
+                <img src="{{libro.imagenLibro.url}}" class="" width="100px">
+                {% endif %}
+
+                <!-- Mostrar el título del libro -->
+                <p>{{ libro.titulo }}</p>
+
+                <!-- Enlace para ver más detalles del libro -->
+                <a href="{% url 'Ciencia_ficción_detalle' libro.id %}"><i class="bi bi-eye"></i></a>
+                <!-- Condicional para mostrar botones solo si el usuario es el propietario del libro -->
+                {% if user.id == libro.usuario.id %}
+                <a href="{% url 'Ciencia_ficción_editar' libro.id %}"><i class="bi bi-pencil-fill"></i></a>
+                <a href="{% url 'Ciencia_ficción_eliminar' libro.id %}"><i class="bi bi-trash text-danger"></i></a>
+                {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+
+{% endblock main %}

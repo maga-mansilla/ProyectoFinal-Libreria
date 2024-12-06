@@ -9,6 +9,7 @@ class Libro(models.Model):
     ('novelas', 'Novelas'),
     ('autoayuda','Autoayuda'),
     ('terror','Terror'),
+    ('otro','Otro'),
     )
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     titulo = models.CharField(max_length=200)
@@ -22,6 +23,7 @@ class Libro(models.Model):
     fechaPublicacion = models.DateTimeField(auto_now_add=True)
     telefonoContacto = models.IntegerField()
     emailContacto = models.EmailField()
+    imagenLibro = models.ImageField(null=True, blank=True, upload_to="imagenes/")
     
 
     class Meta:

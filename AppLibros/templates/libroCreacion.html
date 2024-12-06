@@ -1,0 +1,53 @@
+{% extends 'home.html' %}
+
+{% block main %}
+
+<br>
+<br>
+
+<div class="container">
+    <h1 class="text-center">Agrega un nuevo libro</h1>
+    
+    {% if user.is_authenticated %}
+        <!-- Si el usuario está autenticado, muestra el formulario -->
+        <div class="form-group">
+            <form style="width: 50vw; margin-left : 15vw;" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Mostrar los errores si el formulario no es válido -->
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                
+                {{ form.as_p }}
+                <div class="container text-center">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    {% else %}
+        <!-- Si el usuario no está autenticado, muestra un mensaje -->
+        <div class="alert alert-warning text-center">
+            <p>Debes estar autenticado para agregar un nuevo libro.</p>
+        </div>
+    {% endif %}
+    
+</div>
+
+<br>
+<br>
+
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("usuario_id").value = name;
+</script>
+
+{% endblock main %}

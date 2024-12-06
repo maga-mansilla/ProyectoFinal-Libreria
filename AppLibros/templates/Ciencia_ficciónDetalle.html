@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+
+{% block main %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{ciencia_ficción.titulo}}</h4></p>
+
+{% if ciencia_ficción.imagenLibro %}
+    <p><img src="{{ciencia_ficción.imagenLibro.url}}" alt="Imagen del libro"></p>
+{% endif %}
+<p>Titulo: {{ciencia_ficción.titulo}}</p>
+<p>Libro: {{ciencia_ficción.libro}}</p>
+<p>Escritor: {{ciencia_ficción.escritor}}</p>
+<p>Editorial: {{ciencia_ficción.editorial}}</p>
+<p>Descripción: {{ciencia_ficción.descripcion}}</p>
+<p>Cantidad de paginas: {{ciencia_ficción.cantidad_de_paginas}}</p>
+<p>Año: {{ciencia_ficción.year}}</p>
+<p>Precio($): {{ciencia_ficción.precio}}</p>
+<p>Fecha de Publicacion: {{ciencia_ficción.fechaPublicacion}}</p>
+<p>Teléfono de Contacto: {{ciencia_ficción.telefonoContacto}}</p>
+<p>Email de Contacto: {{ciencia_ficción.emailContacto}}</p>
+<p>El PK del libro es: {{ ciencia_ficción.pk }}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+        {% if comentarios %}
+            {% for comentario in comentarios %}
+                <p><strong>{{comentario.nombre}}</strong></p>
+                <p>{{comentario.mensaje}}</p>
+                <p><small>{{comentario.fechaComentario}}</small></p>
+                <hr>
+            {% endfor %}
+    {% else %}
+        <p>No han comentado este libro.</p>  
+    {% endif %}
+    {% if ciencia_ficción.pk %}
+    <a href="{% url 'comentario' ciencia_ficción.pk %}" class="btn btn-primary">Agrega un Comentario</a>
+    {% else %}
+    <p>Este libro no tiene un identificador válido.</p>
+    {% endif %}
+    </div>
+</div>
+<br>
+{% endblock main %}
