@@ -114,6 +114,104 @@ class Ciencia_ficciónDelete(LoginRequiredMixin, DeleteView):
     context_object_name = 'ciencia_ficción'
     template_name = 'Ciencia_ficciónBorrado.html'
 
+#NOVELAS
+
+class NovelasLista(LoginRequiredMixin, ListView):
+    model = Libro
+    context_object_name = 'novelas'
+    template_name = 'listanovelas.html'
+    login_url = '/login/'
+    def get_queryset(self):
+        return Libro.objects.filter(libro='novelas') # Filtramos los libros de Ciencia Ficción
+
+class NovelasDetalle(LoginRequiredMixin, DetailView):
+    model = Libro
+    context_object_name = 'novelas'
+    template_name = 'novelasDetalle.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Agregar los comentarios al contexto
+        context['comentarios'] = self.object.comentarios.all()
+        return context
+
+class NovelasUpdate(LoginRequiredMixin, UpdateView):
+    model = Libro
+    form_class = ActualizacionLibro
+    success_url = reverse_lazy('novelas')
+    context_object_name = 'novelas'
+    template_name = 'novelasEdicion.html'
+
+class NovelasDelete(LoginRequiredMixin, DeleteView):
+    model = Libro
+    success_url = reverse_lazy('novelas')
+    context_object_name = 'novelas'
+    template_name = 'novelasBorrado.html'
+
+#AUTOAYUDA
+class AutoayudaLista(LoginRequiredMixin, ListView):
+    model = Libro
+    context_object_name = 'autoayuda'
+    template_name = 'listaautoayuda.html'
+    login_url = '/login/'
+    def get_queryset(self):
+        return Libro.objects.filter(libro='autoayuda') # Filtramos los libros de Ciencia Ficción
+
+class AutoayudaDetalle(LoginRequiredMixin, DetailView):
+    model = Libro
+    context_object_name = 'autoayuda'
+    template_name = 'autoayudaDetalle.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Agregar los comentarios al contexto
+        context['comentarios'] = self.object.comentarios.all()
+        return context
+
+class AutoayudaUpdate(LoginRequiredMixin, UpdateView):
+    model = Libro
+    form_class = ActualizacionLibro
+    success_url = reverse_lazy('autoayuda')
+    context_object_name = 'autoayuda'
+    template_name = 'autoayudaEdicion.html'
+
+class AutoayudaDelete(LoginRequiredMixin, DeleteView):
+    model = Libro
+    success_url = reverse_lazy('autoayuda')
+    context_object_name = 'autoayuda'
+    template_name = 'autoayudaBorrado.html'
+
+#TERROR
+class TerrorLista(LoginRequiredMixin, ListView):
+    model = Libro
+    context_object_name = 'terror'
+    template_name = 'listaterror.html'
+    login_url = '/login/'
+    def get_queryset(self):
+        return Libro.objects.filter(libro='terror') # Filtramos los libros de Ciencia Ficción
+
+class TerrorDetalle(LoginRequiredMixin, DetailView):
+    model = Libro
+    context_object_name = 'terror'
+    template_name = 'terrorDetalle.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Agregar los comentarios al contexto
+        context['comentarios'] = self.object.comentarios.all()
+        return context
+
+class TerrorUpdate(LoginRequiredMixin, UpdateView):
+    model = Libro
+    form_class = ActualizacionLibro
+    success_url = reverse_lazy('terror')
+    context_object_name = 'terror'
+    template_name = 'terrorEdicion.html'
+
+class TerrorDelete(LoginRequiredMixin, DeleteView):
+    model = Libro
+    success_url = reverse_lazy('terror')
+    context_object_name = 'terror'
+    template_name = 'terrorBorrado.html'
+
+
 # COMENTARIOS
 
 class ComentarioPagina(LoginRequiredMixin, CreateView):
@@ -132,13 +230,5 @@ class ComentarioPagina(LoginRequiredMixin, CreateView):
 
 
 
-def Libros(req):
-    return render(req,"libros1.html")
-def Ciencia_ficción(req):
-    return render(req,"Ciencia_ficción.html")
-def Novelas(req):
-    return render(req,"Novelas.html")
-def Terror(req):
-    return render(req,"Terror.html")
-def Autoayuda(req):
-    return render(req,"Autoayuda.html")
+def aboutME(request):
+    return render(request, 'aboutME.html', {})

@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+
+{% block main %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{autoayuda.titulo}}</h4></p>
+
+{% if autoayuda.imagenLibro %}
+    <p><img src="{{autoayuda.imagenLibro.url}}" alt="Imagen del libro"></p>
+{% endif %}
+<p>Titulo: {{autoayuda.titulo}}</p>
+<p>Libro: {{autoayuda.libro}}</p>
+<p>Escritor: {{autoayuda.escritor}}</p>
+<p>Editorial: {{autoayuda.editorial}}</p>
+<p>Descripción: {{autoayuda.descripcion}}</p>
+<p>Cantidad de paginas: {{autoayuda.cantidad_de_paginas}}</p>
+<p>Año: {{autoayuda.year}}</p>
+<p>Precio($): {{autoayuda.precio}}</p>
+<p>Fecha de Publicacion: {{autoayuda.fechaPublicacion}}</p>
+<p>Teléfono de Contacto: {{autoayuda.telefonoContacto}}</p>
+<p>Email de Contacto: {{autoayuda.emailContacto}}</p>
+<p>El PK del libro es: {{ autoayuda.pk }}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+        {% if comentarios %}
+            {% for comentario in comentarios %}
+                <p><strong>{{comentario.nombre}}</strong></p>
+                <p>{{comentario.mensaje}}</p>
+                <p><small>{{comentario.fechaComentario}}</small></p>
+                <hr>
+            {% endfor %}
+    {% else %}
+        <p>No han comentado este libro.</p>  
+    {% endif %}
+    {% if autoayuda.pk %}
+    <a href="{% url 'comentario' autoayuda.pk %}" class="btn btn-primary">Agrega un Comentario</a>
+    {% else %}
+    <p>Este libro no tiene un identificador válido.</p>
+    {% endif %}
+    </div>
+</div>
+<br>
+{% endblock main %}

@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+
+{% block main %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{terror.titulo}}</h4></p>
+
+{% if terror.imagenLibro %}
+    <p><img src="{{terror.imagenLibro.url}}" alt="Imagen del libro"></p>
+{% endif %}
+<p>Titulo: {{terror.titulo}}</p>
+<p>Libro: {{terror.libro}}</p>
+<p>Escritor: {{terror.escritor}}</p>
+<p>Editorial: {{terror.editorial}}</p>
+<p>Descripción: {{terror.descripcion}}</p>
+<p>Cantidad de paginas: {{terror.cantidad_de_paginas}}</p>
+<p>Año: {{terror.year}}</p>
+<p>Precio($): {{terror.precio}}</p>
+<p>Fecha de Publicacion: {{terror.fechaPublicacion}}</p>
+<p>Teléfono de Contacto: {{terror.telefonoContacto}}</p>
+<p>Email de Contacto: {{terror.emailContacto}}</p>
+<p>El PK del libro es: {{ terror.pk }}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+        {% if comentarios %}
+            {% for comentario in comentarios %}
+                <p><strong>{{comentario.nombre}}</strong></p>
+                <p>{{comentario.mensaje}}</p>
+                <p><small>{{comentario.fechaComentario}}</small></p>
+                <hr>
+            {% endfor %}
+    {% else %}
+        <p>No han comentado este libro.</p>  
+    {% endif %}
+    {% if terror.pk %}
+    <a href="{% url 'comentario' terror.pk %}" class="btn btn-primary">Agrega un Comentario</a>
+    {% else %}
+    <p>Este libro no tiene un identificador válido.</p>
+    {% endif %}
+    </div>
+</div>
+<br>
+{% endblock main %}

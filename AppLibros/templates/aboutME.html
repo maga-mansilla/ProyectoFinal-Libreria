@@ -1,0 +1,90 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block main %}
+<br>
+<br>
+
+<div class="container">
+   <h2 class="text-center text-dark mb-4">
+       Acerca de Mi
+   </h2>
+   <div class="row g-4">
+       <div class="col-md-6 col-lg-3">
+           <div class="card custom-card">
+                <div class="card-body text-center">
+                    <img src="{% static 'AppLibros/imagenes/avatar.jpg' %}" class="rounded-circle mb-3" width="150px">
+                    <h3 class="card-title mb-3">Magalí Mansilla</h3>
+                    <p class="card-text">Contadora-Analista de datos</p>
+                    <p class="card-text">Sígueme en:</p>
+                    <a href="https://www.linkedin.com/in/magali-mansilla/">
+                        <i class="bi bi-linkedin text-dark mx-1"></i>
+                    </a>
+                </div>
+           </div>
+       </div>
+       <div class="col-md-8">
+           <div class="card bg-light shadow-sm">
+                <div class="card-body">
+                    <p class="text-center">¡Hola! Mi nombre es Magalí, soy contadora pública, me interesa el mundo del análisis de datos y ciencia de datos. Es por esto que me encuentro aprendiendo el lenguaje de programación Python y el Framework Django. Gracias por visitar mi página :)</p>
+                </div>
+           </div>
+       </div>
+   </div>
+</div>
+
+<br><br><br><br>
+
+{% endblock main %}
+
+{% block styles %}
+<style>
+    /* Estilo para el fondo de la tarjeta amarilla */
+    .custom-card {
+        background-color: #FFEB3B; /* Amarillo brillante */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .custom-card .card-body {
+        padding: 30px;
+    }
+
+    /* Añadir un fondo más suave y borde redondeado para el texto */
+    .card.bg-light {
+        background-color: #f7f7f7;
+        border-radius: 10px;
+    }
+    
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    /* Añadir espacio y mejorar los iconos */
+    .bi-linkedin {
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+    }
+    
+    .bi-linkedin:hover {
+        color: #0077b5; /* Color azul de LinkedIn */
+    }
+    
+    /* Estilo para el contenedor */
+    .container {
+        margin-top: 50px;
+    }
+
+    /* Mejorar márgenes en el texto */
+    .text-center p {
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.6;
+    }
+</style>
+{% endblock %}

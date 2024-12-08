@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+
+{% block main %}
+
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{novelas.titulo}}</h4></p>
+
+{% if novelas.imagenLibro %}
+    <p><img src="{{novelas.imagenLibro.url}}" alt="Imagen del libro"></p>
+{% endif %}
+<p>Titulo: {{novelas.titulo}}</p>
+<p>Libro: {{novelas.libro}}</p>
+<p>Escritor: {{novelas.escritor}}</p>
+<p>Editorial: {{novelas.editorial}}</p>
+<p>Descripción: {{novelas.descripcion}}</p>
+<p>Cantidad de paginas: {{novelas.cantidad_de_paginas}}</p>
+<p>Año: {{novelas.year}}</p>
+<p>Precio($): {{novelas.precio}}</p>
+<p>Fecha de Publicacion: {{novelas.fechaPublicacion}}</p>
+<p>Teléfono de Contacto: {{novelas.telefonoContacto}}</p>
+<p>Email de Contacto: {{novelas.emailContacto}}</p>
+<p>El PK del libro es: {{ novelas.pk }}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios...</h4>
+    <br>
+    <div class="container">
+        {% if comentarios %}
+            {% for comentario in comentarios %}
+                <p><strong>{{comentario.nombre}}</strong></p>
+                <p>{{comentario.mensaje}}</p>
+                <p><small>{{comentario.fechaComentario}}</small></p>
+                <hr>
+            {% endfor %}
+    {% else %}
+        <p>No han comentado este libro.</p>  
+    {% endif %}
+    {% if novelas.pk %}
+    <a href="{% url 'comentario' novelas.pk %}" class="btn btn-primary">Agrega un Comentario</a>
+    {% else %}
+    <p>Este libro no tiene un identificador válido.</p>
+    {% endif %}
+    </div>
+</div>
+<br>
+{% endblock main %}
